@@ -1,12 +1,12 @@
 # Maintainer: Thomas S Hatch <thatch45 at gmail dot com>
 # Build the salt package from local files.
 # Use this to test Arch installation before committing changes.
-pkgname=salt-monitor
+pkgname=salt-monitor-git
 pkgver=$(date +%Y%m%d)
 pkgrel=1
 pkgdesc='A monitoring system that extends the salt core'
 arch=('any')
-url="https://github.com/thatch45/salt"
+url="https://github.com/archme/salt-monitor"
 license=('APACHE')
 groups=()
 depends=('python2'

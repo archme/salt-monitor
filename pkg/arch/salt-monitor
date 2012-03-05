@@ -18,7 +18,8 @@ case "$1" in
     if [ -z "$PID" ]; then
       [ -f /var/run/$daemon_name.pid ] && rm -f /var/run/$daemon_name.pid
       # RUN
-      /usr/bin/$daemon_name -d
+      #/usr/bin/$daemon_name -d
+      /usr/bin/$daemon_name -l debug &> /var/log/salt/monitor.out &
       #
       if [ $? -gt 0 ]; then
         stat_fail
