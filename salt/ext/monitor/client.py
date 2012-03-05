@@ -8,6 +8,7 @@ Use:
 '''
 # Import salt modules
 import salt.crypt
+import salt.payload
 # Import zeromq libs
 import zmq
 
@@ -17,6 +18,7 @@ class AlertClient(object):
     '''
     def __init__(self, opts):
         self.opts = opts
+        self.serial = salt.payload.Serial(self.opts)
         self.auth = salt.crypt.SAuth(opts)
         self.socket = self.__get_socket()
 
@@ -41,5 +43,5 @@ class AlertClient(object):
                 'msg': msg}
         payload = {'enc': 'aes',
                    'load': self.auth.crypticle.dumps(load)}
-        self.socket.send_pyobj(payload)
-        return self.auth.crypticle.loads(self.socket.recv_pyobj())
+        self.socket.send(self.serial.dumps(payload))
+        return self.auth.crypticle.loads(self.serial.loads(self.socket.recv()))
