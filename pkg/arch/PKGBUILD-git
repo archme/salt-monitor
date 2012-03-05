@@ -1,22 +1,22 @@
 # Maintainer: Thomas S Hatch <thatch45 at gmail dot com>
-pkgname=salt-monitor
+pkgname=salt-monitor-git
 pkgver=$(date +%Y%m%d)
 pkgrel=1
 pkgdesc='A monitoring system that extends the salt core'
 arch=('any')
-url="https://github.com/thatch45/salt"
+url="https://github.com/archme/salt"
 license=('APACHE')
 groups=()
 depends=('python2'
          'salt')
 makedepends=('git')
-provides=()
+provides=('salt-monitor')
 backup=('etc/salt/monitor')
 options=()
 source=("salt-monitor")
-md5sums=('c435daa3b553a6425b48a8abed11b863')
+md5sums=('d667d549198bf376a4fc1ef2d464ae98')
 
-_gitroot="git://github.com/thatch45/salt-monitor.git"
+_gitroot="git://github.com/archme/salt-monitor.git"
 _gitname="monitor"
 
 build() {
@@ -42,8 +42,11 @@ package() {
   cd "$srcdir/$_gitname-build"
 
   python2 setup.py install --root=$pkgdir/ --optimize=1
-  
+
+  mkdir -p $pkgdir/var/log/salt/
+  chmod 700 $pkgdir/var/log/salt/
+
   mkdir -p $pkgdir/etc/rc.d/
   cp $srcdir/salt-monitor $pkgdir/etc/rc.d/
   chmod +x $pkgdir/etc/rc.d/*
-} 
+}

@@ -97,7 +97,7 @@ setup(
       py_modules=['salt.modules.alert'],
       scripts=['scripts/salt-monitor'],
       data_files=[(os.path.join(etc_path, 'salt'),
-                    ['conf/monitor']),
+                    ['conf/monitor.template']),
                 ('share/man/man1',
                     ['doc/man/salt-monitor.1',
                     ]),
