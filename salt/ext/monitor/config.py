@@ -21,6 +21,7 @@ def monitor_config(path):
 
     # Overwrite minion options with monitor defaults
     opts.update({'log_file' : '/var/log/salt/monitor'})
+    opts.update({'cachedir' : '/var/cache/salt/monitor'})
 
     # Add unset monitor defaults
     for key, value in [('alert_master', 'salt'),
